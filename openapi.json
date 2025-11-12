@@ -22207,18 +22207,21 @@
         "parameters": [
           {
             "name": "webhook-id",
+            "in": "header",
             "description": "A unique event ID for the event that triggered the outbound webhook request.",
             "required": true,
             "schema": { "type": "string" }
           },
           {
             "name": "webhook-timestamp",
+            "in": "header",
             "description": "Timestamp associated with the outbound HTTPS request.",
             "required": true,
             "schema": { "type": "integer", "format": "int32" }
           },
           {
             "name": "webhook-signature",
+            "in": "header",
             "description": "The digital signature that can be used to validate the authenticity of the webhook data.",
             "required": true,
             "schema": { "type": "string" }

@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "Mint Starter Kit",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#1A73E8",
+    "light": "#28D296",
+    "dark": "#1D2327"
   },
   "favicon": "/favicon.svg",
   "navigation": {
@@ -55,7 +55,7 @@
             "pages": [
               "api-reference/introduction"
             ],
-            "openapi": "openapi-modified.json"
+            "openapi": "openapi.json"
           }
         ]
       }
