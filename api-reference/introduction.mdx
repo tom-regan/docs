@@ -1,33 +1,332 @@
----
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
----
+The MindBridge API is an HTTP REST API that provides access to MindBridge entities and processes. Request and response bodies are
+generally JSON formatted, with some exceptions.
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
+## Endpoint model
 
-## Welcome
+Endpoints are structured in a standard way:
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+### Create
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+`POST /{entityName}` - Creates an entity with the properties specified in the request body.
 
-## Authentication
+### Read
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+`GET /{entityName}/{entityId}` – Reads the entity identified by the ID.
+
+### Update
+
+`PUT /{entityName}/{entityId}` – Updates the entity identified by the ID with the content of the request body.
+
+Every time an entity is saved, the `version` property is incremented. To prevent multiple calls from overwriting each other's changes,
+the `version` property in the updated request body must match the latest version on MindBridge's servers.
+
+### Delete
+
+`DELETE /{entityName}/{entityId}` – Deletes the entity identified by the ID.
+
+### Query
+
+`POST /{entityName}/query` – Performs a paged query of the entity collection.
+
+## Entity model
+
+All endpoint requests and responses for a given entity use the same model structure, with some fields being either read-only or editable
+depending on the method. If a property is not editable for the endpoint in question, it will be ignored.
+
+For example, if the following organization entity body is used with the `Create Organization` endpoint, then the `id` property will be
+ignored and a new organization will be created with a new id and "New organization" as the name.
 
 ```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+{
+  "id": "4b8360d00000000000000001",
+  "name": "New organization"
+}
 ```
+
+Using this approach, an entity can be created or updated using the same model read from a read entity call, as read-only fields will not be
+overwritten by changes made to the _create_ or _update_ body.
+
+If a property that is not present on the model is included in a create or update request, then the request body will be considered invalid
+and an error will be returned.
+
+## MindBridge Query Language
+
+### Overview
+
+MindBridge Query Language (QL) is the standard unified query language used to interact with all the underlying data tables and
+collections within MindBridge. This query language has been extended to the MindBridge API, which uses this syntax for all `/query`
+endpoints within the API, as well as several other endpoints.
+
+### Syntax
+
+The query is expressed as a JSON object. The example below looks for values equal to 10000 in the `credit` column.
+
+```json
+{
+  "credit": {
+    "$eq": 10000
+  }
+}
+```
+
+Above, `$eq` is the equality operator. Other operators are listed below. As a shortcut for equality, you can specify the value directly.
+
+```json
+{
+  "credit": 10000
+}
+```
+
+In order to conform to the syntax of a valid JSON object, all operators and fields must be enclosed in quotes. For more details on the
+JSON language, refer to [json.org](https://json.org).
+
+Logical `AND` and `OR` conditions are available. If you want to specify two columns, the conditions can be combined with `$and`.
+
+```json
+{
+  "$and": [
+    {
+      "account": {
+        "$eq": "1023345"
+      }
+    },
+    {
+      "risk": {
+        "$gte": 5000
+      }
+    }
+  ]
+}
+```
+
+#### Simplified Syntax
+
+The example `$and` query above can be simplified using the syntax seen below.
+
+```json
+{
+  "account": {
+    "$eq": "1023345"
+  },
+  "risk": {
+    "$gte": 5000
+  }
+}
+```
+
+You can combine `$or` and `$and` to build up a more complex structure, such as the one seen below, which combines all the techniques
+seen so far.
+
+```json
+{
+  "risk": {
+    "$gte": 5000,
+    "$lt": 7000
+  },
+  "$or": [
+    {
+      "transaction": {
+        "$iprefix": "ABC1"
+      }
+    },
+    {
+      "transaction": {
+        "$iprefix": "ABC2"
+      }
+    }
+  ],
+  "$and": [
+    {
+      "source": {
+        "$ne": "MA"
+      }
+    },
+    {
+      "source": {
+        "$iprefix": "M"
+      }
+    }
+  ]
+}
+```
+
+You can use two operators on the same column at the same time:
+
+```json
+{
+  "credit": {
+    "$gte": 1000,
+    "$lt": 10000
+  }
+}
+```
+
+#### Unique Names
+
+Every field in a JSON object or sub-object must be **unique**. The following is not valid because `source` appears twice at the top level.
+
+```json
+{
+  "source": {
+    "$ne": "MA"
+  },
+  "source": {
+    "$ne": "MB"
+  }
+}
+```
+
+Instead, wrap it in `$and`:
+
+```json
+{
+  "$and": [
+    {
+      "source": {
+        "$ne": "MA"
+      }
+    },
+    {
+      "source": {
+        "$ne": "MB"
+      }
+    }
+  ]
+}
+```
+
+Or use another operator like `$nin`:
+
+```json
+{
+  "source": {
+    "$nin": [
+      "MA",
+      "MB"
+    ]
+  }
+}
+```
+
+You can use two operators on the same column at the same time:
+
+```json
+{
+  "credit": {
+    "$gte": 1000,
+    "$lt": 10000
+  }
+}
+```
+
+### Column Operators
+
+**Column operators** apply a filter to a specific column.
+
+| Description  | Description                                                                                                                                                                                                                                                                                                                                                                                               | Column Types                                                                                                             | Field Conditions                                                                         |
+|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| `$eq`        | Tests if the value in the column **is identical** to the literal value.                                                                                                                                                                                                                                                                                                                                   | STRING <br/>DATE_TIME<br/>INT32<br/>INT64<br/>FLOAT32<br/>FLOAT64<br/>MONEY_100<br/>PERCENTAGE_FIXED_POINT<br/>OBJECT_ID | case-insensitive on STRING values<br/>`equalitySearch` must be true                      |
+| `$ne`        | Tests if the value in the column **is not identical** to the literal value.                                                                                                                                                                                                                                                                                                                               | STRING<br/>DATE_TIME<br/>INT32<br/>INT64<br/>FLOAT32<br/>FLOAT64<br/>MONEY_100<br/>PERCENTAGE_FIXED_POINT<br/>OBJECT_ID  | case-insensitive on STRING values<br/>`equalitySearch` must be true                      |
+| `$gt`        | Tests if the value in the column is **greater than** the literal value.                                                                                                                                                                                                                                                                                                                                   | STRING<br/>DATE_TIME<br/>INT32<br/>INT64<br/>FLOAT32<br/>FLOAT64<br/>MONEY_100<br/>PERCENTAGE_FIXED_POINT<br/>OBJECT_ID  | case-insensitive on STRING values<br/>`rangeSearch` must be true                         |
+| `$gte`       | Tests if the value in the column is **greater than or equal** to the literal value.                                                                                                                                                                                                                                                                                                                       | STRING<br/>DATE_TIME<br/>INT32<br/>INT64<br/>FLOAT32<br/>FLOAT64<br/>MONEY_100<br/>PERCENTAGE_FIXED_POINT<br/>OBJECT_ID  | case-insensitive on STRING values<br/>`rangeSearch` must be true                         |
+| `$lt`        | Tests if the value in the column is **less than** the literal value.                                                                                                                                                                                                                                                                                                                                      | STRING<br/>DATE_TIME<br/>INT32<br/>INT64<br/>FLOAT32<br/>FLOAT64<br/>MONEY_100<br/>PERCENTAGE_FIXED_POINT<br/>OBJECT_ID  | case-insensitive on STRING values<br/>`rangeSearch` must be true                         |
+| `$lte`       | Tests if the value in the column is **less than or equal** to the literal value.                                                                                                                                                                                                                                                                                                                          | STRING<br/>DATE_TIME<br/>INT32<br/>INT64<br/>FLOAT32<br/>FLOAT64<br/>MONEY_100<br/>PERCENTAGE_FIXED_POINT<br/>OBJECT_ID  | case-insensitive on STRING values<br/>`rangeSearch` must be true                         |
+| `$contains`  | Tests if an array **contains** a literal value.<br/>For example, given a transaction with entries from accounts 12345 and 23456, the following query on the `gl_journal_tx` data table would match the transaction:<br/>```{ "accounts": { "$contains": "12345" } }```                                                                                                                                    | ARRAY_STRINGS                                                                                                            | case-insensitive on STRING values<br/>`containsSearch` must be true                      |
+| `$ncontains` | Tests if an array **does not contain** a literal value.                                                                                                                                                                                                                                                                                                                                                   | ARRAY_STRINGS                                                                                                            | case-insensitive on STRING values<br/>`containsSearch` must be true                      |
+| `$in`        | Tests if a column is equal to one of the values in an array of literals.                                                                                                                                                                                                                                                                                                                                  | STRING<br/>DATE_TIME<br/>INT32<br/>INT64<br/>FLOAT32<br/>FLOAT64<br/>MONEY_100<br/>PERCENTAGE_FIXED_POINT<br/>OBJECT_ID  | case-insensitive on STRING values<br/>`equalitySearch` must be true                      |
+| `$nin`       | Tests if a column is **not equal** to any values in an array of literals.                                                                                                                                                                                                                                                                                                                                 | STRING<br/>DATE_TIME<br/>INT32<br/>INT64<br/>FLOAT32<br/>FLOAT64<br/>MONEY_100<br/>PERCENTAGE_FIXED_POINT<br/>OBJECT_ID  | case-insensitive on STRING values<br/>`equalitySearch` must be true                      |
+| `$flags`     | Accepts an object with one or more keys with boolean values. Tests if the flags (keys) match the values. <br/>For example, to search for entries that triggered the [2 Digit Benford](https://support.mindbridge.ai/hc/en-us/articles/360056059834) control point, use this query on the `gl_journal_lines` data table.<br/>```{ "cp_failed": {"$flags": { "journal_entry_two_digit_benford": true }}}``` | BOOLEAN_FLAGS                                                                                                            |                                                                                          |
+| `$isubstr`   | Tests if a literal value **matches** the value in the column. For example, the following query on the `engagements/query` <br/>endpoint will match engagements named "abc", "aBc", and "zabcd".<br/> ```{ "name": { "$isubstr": "abc" } }```                                                                                                                                                              | STRING                                                                                                                   | case-insensitive on STRING values<br/>`allowCaseInsensitiveSubstringSearch` must be true |
+| `$iprefix`   | Tests if a literal value **matches** the start of the value in the column. For example, the following query on the `gl_journal_tx` data table will match transactions "T1234", "t1234", and "T12345".<br/> ```{ "transaction": { "$iprefix": "T1234" } }```                                                                                                                                               | STRING                                                                                                                   | case-insensitive on STRING values<br/>`caseInsensitivePrefixSearch` must be true         |
+| `$niprefix`  | Tests if a literal value **does not match** the start of the value in the column.                                                                                                                                                                                                                                                                                                                         | STRING                                                                                                                   | case-insensitive on STRING values<br/>`caseInsensitivePrefixSearch` must be true         |
+
+### Root Operators
+
+#### Logical Operators
+
+**Logical operators** allow MindBridge to combine Column Operation queries to allow for more sophisticated calls.
+
+| Operator | Description                                                    |
+|----------|----------------------------------------------------------------|
+| `$and`   | Tests that **all** contained terms are evaluated to be `true`. |
+| `$or`    | Tests that **any** contained terms are evaluated to be `true`. |
+
+#### Keyword Operators
+
+**Keyword operators** are applied simultaneously to all columns that support keyword searches. This is controlled by the keywordSearch
+attribute associated with the column’s metadata.
+
+| Operator              | Description                                                                                                                                                                                                                                                                                                             |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$keyword_prefix`     | Performs a case-insensitive prefix search of all words in the row (operand must be a STRING).<br/>For example, the following query on the `gl_journal_tx` data table will return transactions with rows that contain the words **abc** , **abcdef**, or **aBcd** in any column. <br/>```{ "$keyword_prefix": "abc" }``` |
+| `$keyword_prefix_not` | Inverted case-insensitive prefix search (operand must be a STRING).                                                                                                                                                                                                                                                     |
+
+#### Population Operators
+
+**Population operators** test whether the specified entry is or is not included within the specified population, identified by its ID. The
+population in question must be accessible from the analysis, meaning the population must be part of the analysis, engagement, or library
+that this data table resides in.
+
+| Operator          | Description                                                                     |
+|-------------------|---------------------------------------------------------------------------------|
+| `$population`     | Tests that entries are part of the population specified by the provided ID.     |
+| `$not_population` | Tests that entries are not part of the population specified by the provided ID. |
+
+The correct usage of `$population` and `$not_population` is as follows, with `643eff00ec992f7ec42ed9f7` being a valid population ID:
+
+```json
+{
+  "$population": "643eff00ec992f7ec42ed9f7"
+}
+```
+
+```json
+{
+  "$not_population": "643eff00ec992f7ec42ed9f7"
+}
+```
+
+### Data Formats
+
+Because the MindBridge QL is based on JSON, `strings`, `numbers`, and `booleans` are natively included in the language definition, but
+other values require some conversion. The following table describes the values MindBridge QL accepts in relation to our internal data
+structure. The contents of the "Column Type" column (below) represent the data types supported internally and how they are mapped to the
+JSON object structure.
+
+| Column Type              | Format                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `STRING`                 | Value must be a JSON string.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `DATE_TIME`              | A JSON string in ISO8601 date-time format, such as **2019-08-10T00:50:00Z**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `BOOLEAN`                | Value must be a JSON boolean (true or false).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `INT32`                  | Value must be a JSON number in the range **[-2^31, 2^31-1]**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `INT64`                  | Value must be a JSON number in the range **[-2^63, 2^63-1]**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `FLOAT32, FLOAT64`       | Value must be a JSON number.<br/>FLOAT32 **[1.2E-38, 3.4E+38]**<br/>FLOAT64 **[2.2E-308, 1.7E+308]**                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `MONEY_100`              | Currently we express currency values as integers, essentially multiplying by 100 to store, and dividing by 100 when displaying the value. <br/>This allows MindBridge to operate with floating point numbers without loss of precision. Value must be a JSON number in the range **[-2^63,2^63-1]**. No division by 100 is performed on the actual data.<br/>For example, in a `MONEY_100` column, such as credit, the following query on the `gl_journal_lines` data table will find values greater than 1234.<br/>```{ "credit": { "$gt": 1234 } }``` |
+| `PERCENTAGE_FIXED_POINT` | Value must be a JSON number in the range **[0, 10000]** where 10000 means 100%.                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `ARRAY_STRINGS`          | Value must be an array of JSON strings.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `OBJECT_ID`              | A 12-byte database identifier, represented by a 24-character hexadecimal string. Organizations, engagements, analyses, and analysis sources all use **OBJECT_ID** for their `id` fields.<br/>For example, `6686add55cd5c94147ecebdb`                                                                                                                                                                                                                                                                                                                    |
+
+## Rate limiting
+
+**Rate limiting** restricts the number of API calls that can be made to certain endpoints over a given period of time, and has been applied
+to the endpoints indicated below. Once the limit is reached, further calls to any of these endpoints will fail until the rate limit resets.
+
+These failures will show the HTTP status: `429 Too Many Requests`, along with a response header: `X-User-Hour-Limit-Remaining`. The
+value in the response header represents the number of seconds until the rate limit resets.
+
+For example, suppose the `POST /users` endpoint has a rate limit of `100` calls per `1 hour`. If more than 100 requests are made within the
+given hour, any subsequent requests would fail and return the error indicated above.
+
+Since rate limiting is applied tenant-wide, all tokens share the same rate limit.
+
+### Rate limits
+
+| Name                    | Reset time remaining header   | Limit | Duration | Endpoints                                                     |
+|-------------------------|-------------------------------|-------|----------|---------------------------------------------------------------|
+| Modify users rate limit | `X-User-Hour-Limit-Remaining` | 100   | 1 hour   | - Create user<br/>- Update user<br/>- Resend activation email |
+
+### Platform-level rate limits
+
+Additional rate limits are applied at the platform level on a per-IP address basis to protect against potential abuse or client-side
+software incidents, and are set high enough that customers should not encounter them in regular use. Platform-level rate limits will return
+the HTTP status `429` with no `X-User-Hour-Limit-Remaining` header, and requests can be retried after approximately 30 seconds.
