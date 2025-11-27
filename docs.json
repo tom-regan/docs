@@ -50,22 +50,6 @@
                 ]
               }
             ]
-          },
-          {
-            "group": "Endpoint examples",
-            "expanded": true,
-            "pages": [
-              "api-reference/introduction",
-              {
-                "group": "Plant demo",
-                "pages": [
-                  "api-reference/endpoint/get",
-                  "api-reference/endpoint/create",
-                  "api-reference/endpoint/delete",
-                  "api-reference/endpoint/webhook"
-                ]
-              }
-            ]
           }
         ]
       },
@@ -78,7 +62,8 @@
               "webhooks/event-model",
               "webhooks/endpoints",
               "webhooks/security",
-              "webhooks/example-payloads"
+              "webhooks/example-payloads",
+              "webhooks/webhooks-spec"
             ]
           }
         ]
