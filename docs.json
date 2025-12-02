@@ -92,7 +92,7 @@
               {
                 "group": "Account Groups",
                 "pages": [
-                  "api-explorer/tag-descriptions/account-groups"
+                  "api-explorer/account-groups/description"
                 ]
               },
               {
@@ -104,7 +104,7 @@
               {
                 "group": "API Tokens",
                 "pages": [
-                  "api-explorer/api-tokens/description"
+                  "api-explorer/tag-descriptions/api-tokens"
                 ]
               },
               {
