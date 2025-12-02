@@ -80,169 +80,300 @@
                 "openapi": "/openapi.json",
                 "pages": [
                   "api-explorer/tag-descriptions/account-groupings",
-                  "POST /v1/account-groupings/{accountGroupingId}/append-from-chunked-file",
+                  "GET /v1/account-groupings/{accountGroupingId}",
+                  "PUT /v1/account-groupings/{accountGroupingId}",
                   "DELETE /v1/account-groupings/{accountGroupingId}",
                   "POST /v1/account-groupings/{accountGroupingId}/export",
-                  "POST /v1/account-groupings/import-from-chunked-file",
+                  "POST /v1/account-groupings/{accountGroupingId}/append-from-chunked-file",
                   "POST /v1/account-groupings/query",
-                  "GET /v1/account-groupings/{accountGroupingId}",
-                  "PUT /v1/account-groupings/{accountGroupingId}"
+                  "POST /v1/account-groupings/import-from-chunked-file"
                 ]
               },
               {
                 "group": "Account Groups",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/account-groups"
+                  "api-explorer/tag-descriptions/account-groups",
+                  "GET /v1/account-groups/{accountGroupId}",
+                  "PUT /v1/account-groups/{accountGroupId}",
+                  "POST /v1/account-groups/query"
                 ]
               },
               {
                 "group": "Account Mappings",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/account-mappings"
+                  "api-explorer/tag-descriptions/account-mappings",
+                  "GET /v1/account-mappings/{accountMappingId}",
+                  "PUT /v1/account-mappings/{accountMappingId}",
+                  "POST /v1/account-mappings/verify",
+                  "POST /v1/account-mappings/query",
+                  "POST /v1/account-mappings/export",
+                  "POST /v1/account-mappings/delete-unused"
                 ]
               },
               {
                 "group": "Admin Reports",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/admin-reports"
+                  "api-explorer/tag-descriptions/admin-reports",
+                  "POST /v1/admin-reports/row-usage-report/run",
+                  "POST /v1/admin-reports/activity-report/run"
                 ]
               },
               {
                 "group": "Analyses",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/analyses"
+                  "api-explorer/tag-descriptions/analyses",
+                  "GET /v1/analyses/{analysisId}",
+                  "PUT /v1/analyses/{analysisId}",
+                  "DELETE /v1/analyses/{analysisId}",
+                  "POST /v1/analyses",
+                  "POST /v1/analyses/{analysisId}/start",
+                  "POST /v1/analyses/{analysisId}/run",
+                  "POST /v1/analyses/query",
+                  "POST /v1/analyses/engagement-roll-forward",
+                  "GET /v1/analyses/{analysisId}/status"
                 ]
               },
               {
                 "group": "Analysis Results",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/analysis-results"
+                  "api-explorer/tag-descriptions/analysis-results",
+                  "POST /v1/analysis-results/query",
+                  "GET /v1/analysis-results/{analysisResultId}"
                 ]
               },
               {
                 "group": "Analysis Source Types",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/analysis-source-types"
+                  "api-explorer/tag-descriptions/analysis-source-types",
+                  "POST /v1/analysis-source-types/query",
+                  "GET /v1/analysis-source-types/{analysisSourceTypeId}"
                 ]
               },
               {
                 "group": "Analysis Type Configuration",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/analysis-type-configuration"
+                  "api-explorer/tag-descriptions/analysis-type-configuration",
+                  "GET /v1/analysis-type-configuration/{analysisTypeConfigurationId}",
+                  "PUT /v1/analysis-type-configuration/{analysisTypeConfigurationId}",
+                  "POST /v1/analysis-type-configuration/query"
                 ]
               },
               {
                 "group": "Analysis Types",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/analysis-types"
+                  "api-explorer/tag-descriptions/analysis-types",
+                  "POST /v1/analysis-types/query",
+                  "GET /v1/analysis-types/{analysisTypeId}"
                 ]
               },
               {
                 "group": "API Tokens",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/api-tokens"
+                  "api-explorer/tag-descriptions/api-tokens",
+                  "GET /v1/api-tokens/{apiTokenId}",
+                  "PUT /v1/api-tokens/{apiTokenId}",
+                  "DELETE /v1/api-tokens/{apiTokenId}",
+                  "POST /v1/api-tokens",
+                  "POST /v1/api-tokens/query",
+                  "GET /v1/api-tokens/current"
                 ]
               },
               {
                 "group": "Async Results",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/async-results"
+                  "api-explorer/tag-descriptions/async-results",
+                  "POST /v1/async-results/query",
+                  "GET /v1/async-results/{asyncResultId}"
                 ]
               },
               {
                 "group": "Chunked Files",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/chunked-files"
+                  "api-explorer/tag-descriptions/chunked-files",
+                  "POST /v1/chunked-files",
+                  "POST /v1/chunked-files/{chunkedFileId}/part",
+                  "POST /v1/chunked-files/query",
+                  "GET /v1/chunked-files/{chunkedFileId}",
+                  "DELETE /v1/chunked-files/{chunkedFileId}"
                 ]
               },
               {
                 "group": "Data Tables",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/data-tables"
+                  "api-explorer/tag-descriptions/data-tables",
+                  "POST /v1/data-tables/{dataTableId}/export",
+                  "POST /v1/data-tables/{dataTableId}/data",
+                  "POST /v1/data-tables/query",
+                  "GET /v1/data-tables/{dataTableId}"
                 ]
               },
               {
                 "group": "Data Transformation",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/data-transformation"
+                  "api-explorer/tag-descriptions/data-transformation",
+                  "POST /v1/file-manager/transform/merge"
                 ]
               },
               {
                 "group": "Engagements",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/engagements"
+                  "api-explorer/tag-descriptions/engagements",
+                  "GET /v1/engagements/{engagementId}",
+                  "PUT /v1/engagements/{engagementId}",
+                  "DELETE /v1/engagements/{engagementId}",
+                  "POST /v1/engagements",
+                  "POST /v1/engagements/query"
                 ]
               },
               {
                 "group": "Engagement Account Groupings",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/engagement-account-groupings"
+                  "api-explorer/tag-descriptions/engagement-account-groupings",
+                  "POST /v1/engagement-account-groupings/{engagementAccountGroupingId}/export",
+                  "POST /v1/engagement-account-groupings/query",
+                  "GET /v1/engagement-account-groupings/{engagementAccountGroupingId}"
                 ]
               },
               {
                 "group": "Engagement Account Groups",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/engagement-account-groups"
+                  "api-explorer/tag-descriptions/engagement-account-groups",
+                  "GET /v1/engagement-account-groups/{engagementAccountGroupId}",
+                  "PUT /v1/engagement-account-groups/{engagementAccountGroupId}",
+                  "DELETE /v1/engagement-account-groups/{engagementAccountGroupId}",
+                  "POST /v1/engagement-account-groups",
+                  "POST /v1/engagement-account-groups/query"
                 ]
               },
               {
                 "group": "File Info",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/file-info"
+                  "api-explorer/tag-descriptions/file-info",
+                  "POST /v1/file-infos/query",
+                  "GET /v1/file-infos/{fileInfoId}"
                 ]
               },
               {
                 "group": "File Manager",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/file-manager"
+                  "api-explorer/tag-descriptions/file-manager",
+                  "GET /v1/file-manager/{fileManagerEntityId}",
+                  "PUT /v1/file-manager/{fileManagerEntityId}",
+                  "DELETE /v1/file-manager/{fileManagerEntityId}",
+                  "POST /v1/file-manager",
+                  "POST /v1/file-manager/query",
+                  "POST /v1/file-manager/import",
+                  "POST /v1/file-manager/import-from-json-table",
+                  "POST /v1/file-manager/import-from-chunked/{chunkedFileId}",
+                  "GET /v1/file-manager/{fileManagerFileId}/export"
                 ]
               },
               {
                 "group": "File Results",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/file-results"
+                  "api-explorer/tag-descriptions/file-results",
+                  "POST /v1/file-results/query",
+                  "GET /v1/file-results/{fileResultId}",
+                  "GET /v1/file-results/{fileResultId}/export"
                 ]
               },
               {
                 "group": "JSON Tables",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/json-tables"
+                  "api-explorer/tag-descriptions/json-tables",
+                  "POST /v1/json-tables",
+                  "POST /v1/json-tables/{jsonTableId}/append",
+                  "GET /v1/json-tables/{jsonTableId}"
                 ]
               },
               {
                 "group": "Libraries",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/libraries"
+                  "api-explorer/tag-descriptions/libraries",
+                  "GET /v1/libraries/{libraryId}",
+                  "PUT /v1/libraries/{libraryId}",
+                  "DELETE /v1/libraries/{libraryId}",
+                  "POST /v1/libraries",
+                  "POST /v1/libraries/query"
                 ]
               },
               {
                 "group": "Organizations",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/organizations"
+                  "api-explorer/tag-descriptions/organizations",
+                  "GET /v1/organizations/{organizationId}",
+                  "PUT /v1/organizations/{organizationId}",
+                  "DELETE /v1/organizations/{organizationId}",
+                  "POST /v1/organizations",
+                  "POST /v1/organizations/query"
                 ]
               },
               {
                 "group": "Populations",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/populations"
+                  "api-explorer/tag-descriptions/populations",
+                  "GET /v1/populations/{populationTagId}",
+                  "PUT /v1/populations/{populationTagId}",
+                  "DELETE /v1/populations/{populationTagId}",
+                  "POST /v1/populations",
+                  "POST /v1/populations/query"
                 ]
               },
               {
                 "group": "Risk Ranges",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/risk-ranges"
+                  "api-explorer/tag-descriptions/risk-ranges",
+                  "GET /v1/risk-ranges/{riskRangesId}",
+                  "PUT /v1/risk-ranges/{riskRangesId}",
+                  "DELETE /v1/risk-ranges/{riskRangesId}",
+                  "POST /v1/risk-ranges",
+                  "POST /v1/risk-ranges/query"
                 ]
               },
               {
                 "group": "Saved Filters",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/saved-filters"
+                  "api-explorer/tag-descriptions/saved-filters",
+                  "GET /v1/saved-filters/{filterId}",
+                  "PUT /v1/saved-filters/{filterId}",
+                  "DELETE /v1/saved-filters/{filterId}",
+                  "POST /v1/saved-filters",
+                  "POST /v1/saved-filters/validate",
+                  "POST /v1/saved-filters/query"
                 ]
               },
               {
                 "group": "Task History",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/task-history"
+                  "api-explorer/tag-descriptions/task-history",
+                  "POST /v1/task-histories/query",
+                  "GET /v1/task-histories/{taskHistoryId}"
                 ]
               },
               {
@@ -250,35 +381,56 @@
                 "openapi": "/openapi.json",
                 "pages": [
                   "api-explorer/tag-descriptions/tasks",
-                  "POST /v1/tasks/{taskId}/add-comment",
-                  "POST /v1/tasks",
-                  "DELETE /v1/tasks/{taskId}",
                   "GET /v1/tasks/{taskId}",
-                  "PUT /v1/tasks/{taskId}"
+                  "PUT /v1/tasks/{taskId}",
+                  "DELETE /v1/tasks/{taskId}",
+                  "POST /v1/tasks",
+                  "POST /v1/tasks/{taskId}/add-comment",
+                  "POST /v1/tasks/query"
                 ]
               },
               {
                 "group": "Transaction ID Previews",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/transaction-id-previews"
+                  "api-explorer/tag-descriptions/transaction-id-previews",
+                  "POST /v1/transaction-id-previews/query",
+                  "GET /v1/transaction-id-previews/{transactionIdPreviewId}"
                 ]
               },
               {
                 "group": "Users",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/users"
+                  "api-explorer/tag-descriptions/users",
+                  "GET /v1/users/{userId}",
+                  "PUT /v1/users/{userId}",
+                  "DELETE /v1/users/{userId}",
+                  "POST /v1/users",
+                  "POST /v1/users/{userId}/resend-activation-link",
+                  "POST /v1/users/query",
+                  "GET /v1/users/current"
                 ]
               },
               {
                 "group": "Webhook Event Logs",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/webhook-event-logs"
+                  "api-explorer/tag-descriptions/webhook-event-logs",
+                  "POST /v1/webhook-event-logs/query",
+                  "GET /v1/webhook-event-logs/{webhookEventId}"
                 ]
               },
               {
                 "group": "Webhooks",
+                "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tag-descriptions/webhooks"
+                  "api-explorer/tag-descriptions/webhooks",
+                  "GET /v1/webhooks/{webhookId}",
+                  "PUT /v1/webhooks/{webhookId}",
+                  "DELETE /v1/webhooks/{webhookId}",
+                  "POST /v1/webhooks",
+                  "POST /v1/webhooks/query"
                 ]
               }
             ]
