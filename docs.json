@@ -1,13 +1,13 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "willow",
   "name": "Mindbridge Documentation",
   "colors": {
     "primary": "#1A73E8",
-    "light": "#28D296",
+    "light": "#F3F5F8",
     "dark": "#1D2327"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon-192.png",
   "navigation": {
     "tabs": [
       {
@@ -15,9 +15,46 @@
         "groups": [
           {
             "group": "Getting started",
+            "icon": "rocket",
             "pages": [
               "getting-started/5-min-quickstart",
               "getting-started/landing-with-ctas"
+            ]
+          },
+          {
+            "group": "How to document",
+            "icon": "book-open",
+            "pages": [
+              "getting-started/updating-documentation"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Integrations",
+        "groups": [
+          {
+            "group": "Integrations",
+            "icon": "plug",
+            "pages": [
+              "integrations/databricks",
+              "integrations/snowflake",
+              "integrations/fabric",
+              "integrations/power-bi"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "SDKs",
+        "groups": [
+          {
+            "group": "SDKs",
+            "icon": "code",
+            "pages": [
+              "sdks/landing",
+              "sdks/python",
+              "sdks/tutorials"
             ]
           }
         ]
@@ -27,6 +64,7 @@
         "groups": [
           {
             "group": "API reference",
+            "icon": "book",
             "pages": [
               "api-explorer/reference",
               "api-explorer/download",
@@ -58,6 +96,7 @@
         "groups": [
           {
             "group": "Webhooks",
+            "icon": "tower-broadcast",
             "pages": [
               "webhooks/event-model",
               "webhooks/endpoints",
@@ -69,37 +108,11 @@
         ]
       },
       {
-        "tab": "SDKs",
-        "groups": [
-          {
-            "group": "SDKs",
-            "pages": [
-              "sdks/landing",
-              "sdks/python",
-              "sdks/tutorials"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Integrations",
-        "groups": [
-          {
-            "group": "Integrations",
-            "pages": [
-              "integrations/databricks",
-              "integrations/snowflake",
-              "integrations/fabric",
-              "integrations/power-bi"
-            ]
-          }
-        ]
-      },
-      {
         "tab": "Release Notes",
         "groups": [
           {
             "group": "Release Notes",
+            "icon": "clipboard",
             "pages": [
               "release-notes/versioned-notes",
               "release-notes/archive"
@@ -110,8 +123,8 @@
     ]
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/MindBridge_Logo_Primary_RGB.png",
+    "dark": "/logo/MindBridge_Logo_Reversed_RGB.png"
   },
   "navbar": {
     "links": [
@@ -125,6 +138,11 @@
       "label": "Dashboard",
       "href": "https://dashboard.mintlify.com"
     }
+  },
+  "fonts": {
+    "family": "DM Sans",
+    "source": "/font/DMSans-Regular.ttf",
+    "format": "woff2"
   },
   "contextual": {
     "options": [
@@ -140,9 +158,11 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "linkedin": "https://www.linkedin.com/company/mindbridge-ai/",
+      "x-twitter": "https://twitter.com/mindbridge_ai",
+      "facebook": "https://www.facebook.com/mindbridgeinc/",
+      "instagram": "https://www.instagram.com/mindbridgeai/",
+      "youtube": "https://www.youtube.com/channel/UCMs1Jyxl6uPi9q9gyLrUgnQ/"
     }
   }
 }

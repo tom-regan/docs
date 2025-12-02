@@ -1,0 +1,52 @@
+---
+title: "Updating documentation"
+---
+
+This page explains how we would update documentation or add pages to the
+Mintlify site.
+
+Every page in Mintlify is an mdx file in the site's folder structure. MDX is
+Markdown supplanted with JSX, to allow for metadata, and added features.
+
+Each pages starts with a metadata section, including at least a title, and
+other fields as appropriate. The following is the start of this file:
+
+``` mdx
+---
+Title: "Updating documentation"
+---
+```
+
+The rest of the document can contain the text in Markdown format. It is
+similar to HTML, but instead of having `<tags>`, you have text and spacing based
+controls to define how things are displayed.
+
+A cheatsheet is available at https://www.geeksforgeeks.org/html/markdown-cheat-sheet/
+
+Once a new page is created, it must be added to the site map.
+
+The docs.json file defines the structure of the site, and all of its pages.
+
+The `navigation` object defines all the tabs that appear on the top of the
+site. Each tab can contain one or more groups, and each group can contain 
+pages or subgroups.
+
+To add a page, find the section you want to add it to, and add a reference
+to the new page, including the full folder structure.
+
+```
+{
+    "group": "How to document",
+    "icon": "book-open",
+    "pages": [
+        "getting-started/updating-documentation",
+        "getting-started/your-new-page-here"
+    ]
+}
+```
+
+Once the changes are made, you will need to commit the changes to the
+repository. This is handled using git, so some familiarity with git is needed.
+
+Once we add and convert new pages, we can update this document with info
+that would be helpful for editors.
