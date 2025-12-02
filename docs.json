@@ -102,39 +102,15 @@
                 ]
               },
               {
-                "group": "API Tokens",
-                "pages": [
-                  "api-explorer/tag-descriptions/api-tokens"
-                ]
-              },
-              {
-                "group": "Engagement Account Groupings",
-                "pages": [
-                  "api-explorer/tag-descriptions/engagement-account-groupings"
-                ]
-              },
-              {
-                "group": "File Manager",
-                "pages": [
-                  "api-explorer/tag-descriptions/file-manager"
-                ]
-              },
-              {
-                "group": "Tasks",
-                "openapi": "/openapi.json",
-                "pages": [
-                  "api-explorer/tag-descriptions/tasks",
-                  "POST /v1/tasks/{taskId}/add-comment",
-                  "POST /v1/tasks",
-                  "DELETE /v1/tasks/{taskId}",
-                  "GET /v1/tasks/{taskId}",
-                  "PUT /v1/tasks/{taskId}"
-                ]
-              },
-              {
                 "group": "Analysis Source Types",
                 "pages": [
                   "api-explorer/tag-descriptions/analysis-source-types"
+                ]
+              },
+              {
+                "group": "API Tokens",
+                "pages": [
+                  "api-explorer/tag-descriptions/api-tokens"
                 ]
               },
               {
@@ -156,6 +132,18 @@
                 ]
               },
               {
+                "group": "Engagement Account Groupings",
+                "pages": [
+                  "api-explorer/tag-descriptions/engagement-account-groupings"
+                ]
+              },
+              {
+                "group": "File Manager",
+                "pages": [
+                  "api-explorer/tag-descriptions/file-manager"
+                ]
+              },
+              {
                 "group": "Populations",
                 "pages": [
                   "api-explorer/tag-descriptions/populations"
@@ -165,6 +153,18 @@
                 "group": "Task History",
                 "pages": [
                   "api-explorer/tag-descriptions/task-history"
+                ]
+              },
+              {
+                "group": "Tasks",
+                "openapi": "/openapi.json",
+                "pages": [
+                  "api-explorer/tag-descriptions/tasks",
+                  "POST /v1/tasks/{taskId}/add-comment",
+                  "POST /v1/tasks",
+                  "DELETE /v1/tasks/{taskId}",
+                  "GET /v1/tasks/{taskId}",
+                  "PUT /v1/tasks/{taskId}"
                 ]
               },
               {
