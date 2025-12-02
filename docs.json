@@ -140,9 +140,7 @@
     }
   },
   "fonts": {
-    "family": "DM Sans",
-    "source": "/font/DMSans-Regular.ttf",
-    "format": "woff2"
+    "family": "DM Sans"
   },
   "contextual": {
     "options": [
