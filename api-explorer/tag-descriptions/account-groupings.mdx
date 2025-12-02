@@ -1,0 +1,43 @@
+---
+title: 'Account Grouping'
+---
+
+An **account grouping** is a custom financial hierarchy that MindBridge uses to interpret accounts and the relationships
+between them, and defines how accounts are aggregated and presented in analysis results across the MindBridge platform
+and reports. When you create an account grouping, you must map account groups
+to [MindBridge Account Classification (MAC) codes](https://support.mindbridge.ai/hc/en-us/articles/22819163288343-MindBridge-Account-Classification-code-system-MAC-v-2).
+This mapping enables MindBridge to effectively analyze datasets across any engagements and analyses that use a given
+account grouping.
+
+## Creating a new account grouping
+
+To create a new account grouping, import a
+completed [MACv2_AccountGroupingTemplate](https://support.mindbridge.ai/hc/en-us/articles/22819163288343)* Excel file or
+a _CCH group trial balance_ file as a chunked file. Import the new file using the `/import-from-chunked-file` endpoint.
+This action will create a new account grouping entry and a complete set of account groups and MAC mappings, as defined
+in the imported file.
+
+***Note:** The exportable template is located at the bottom of the linked article. Once you have the template, follow
+the steps linked here to [create a new account grouping](https://support.mindbridge.ai/hc/en-us/articles/360056330754).
+
+## Appending to an existing account grouping
+
+To append to an existing account grouping, export the most current version of your MindBridge account grouping, then add
+new account groups to the bottom of the account grouping, starting from the first empty row. Next, save the file and
+import it as a chunked file, then import the new file using the `/append-from-chunked-file` endpoint. This action will
+add the new account groups and mappings to the end of the existing account grouping.
+
+**Note:** _CCH group trial balance_ files may not be used when appending to an existing account grouping.
+
+## Publishing an account grouping
+
+Account groupings must be published before they can be added to a library. In order to be published, errors must be
+resolved for all account groups within the account grouping, and the lowest-level account categories for each account
+group must be mapped to a MAC code. To publish an account grouping, set the `publishStatus` field to `PUBLISHED`.
+
+Upon publishing, all the account groups within the account grouping are finalized and can no longer be updated, however
+the account grouping can still be appended to. Appending will change the account grouping's `publishStatus`
+to `UNPUBLISHED_CHANGES`.
+
+From the `UNPUBLISHED_CHANGES`, the account grouping can be re-published after fixing all account group errors, then
+updating the `publishStatus` field to `PUBLISHED`.
