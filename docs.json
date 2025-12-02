@@ -108,6 +108,12 @@
                 ]
               },
               {
+                "group": "Analyses",
+                "pages": [
+                  "api-explorer/tag-descriptions/analyses"
+                ]
+              },
+              {
                 "group": "Analysis Results",
                 "pages": [
                   "api-explorer/tag-descriptions/analysis-results"
@@ -117,6 +123,12 @@
                 "group": "Analysis Source Types",
                 "pages": [
                   "api-explorer/tag-descriptions/analysis-source-types"
+                ]
+              },
+              {
+                "group": "Analysis Type Configuration",
+                "pages": [
+                  "api-explorer/tag-descriptions/analysis-type-configuration"
                 ]
               },
               {
@@ -156,6 +168,12 @@
                 ]
               },
               {
+                "group": "Engagements",
+                "pages": [
+                  "api-explorer/tag-descriptions/engagements"
+                ]
+              },
+              {
                 "group": "Engagement Account Groupings",
                 "pages": [
                   "api-explorer/tag-descriptions/engagement-account-groupings"
@@ -192,9 +210,27 @@
                 ]
               },
               {
+                "group": "Libraries",
+                "pages": [
+                  "api-explorer/tag-descriptions/libraries"
+                ]
+              },
+              {
+                "group": "Organizations",
+                "pages": [
+                  "api-explorer/tag-descriptions/organizations"
+                ]
+              },
+              {
                 "group": "Populations",
                 "pages": [
                   "api-explorer/tag-descriptions/populations"
+                ]
+              },
+              {
+                "group": "Risk Ranges",
+                "pages": [
+                  "api-explorer/tag-descriptions/risk-ranges"
                 ]
               },
               {
@@ -237,6 +273,12 @@
                 "group": "Webhook Event Logs",
                 "pages": [
                   "api-explorer/tag-descriptions/webhook-event-logs"
+                ]
+              },
+              {
+                "group": "Webhooks",
+                "pages": [
+                  "api-explorer/tag-descriptions/webhooks"
                 ]
               }
             ]
