@@ -79,7 +79,7 @@
                 "group": "Account Groupings",
                 "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/account-groupings/description",
+                  "api-explorer/tag-descriptions/account-groupings",
                   "POST /v1/account-groupings/{accountGroupingId}/append-from-chunked-file",
                   "DELETE /v1/account-groupings/{accountGroupingId}",
                   "POST /v1/account-groupings/{accountGroupingId}/export",
@@ -92,43 +92,193 @@
               {
                 "group": "Account Groups",
                 "pages": [
-                  "api-explorer/account-groups/description"
+                  "api-explorer/tag-descriptions/account-groups"
                 ]
               },
               {
                 "group": "Account Mappings",
                 "pages": [
-                  "api-explorer/account-mappings/description"
+                  "api-explorer/tag-descriptions/account-mappings"
+                ]
+              },
+              {
+                "group": "Admin Reports",
+                "pages": [
+                  "api-explorer/tag-descriptions/admin-reports"
+                ]
+              },
+              {
+                "group": "Analyses",
+                "pages": [
+                  "api-explorer/tag-descriptions/analyses"
+                ]
+              },
+              {
+                "group": "Analysis Results",
+                "pages": [
+                  "api-explorer/tag-descriptions/analysis-results"
+                ]
+              },
+              {
+                "group": "Analysis Source Types",
+                "pages": [
+                  "api-explorer/tag-descriptions/analysis-source-types"
+                ]
+              },
+              {
+                "group": "Analysis Type Configuration",
+                "pages": [
+                  "api-explorer/tag-descriptions/analysis-type-configuration"
+                ]
+              },
+              {
+                "group": "Analysis Types",
+                "pages": [
+                  "api-explorer/tag-descriptions/analysis-types"
                 ]
               },
               {
                 "group": "API Tokens",
                 "pages": [
-                  "api-explorer/api-tokens/description"
+                  "api-explorer/tag-descriptions/api-tokens"
+                ]
+              },
+              {
+                "group": "Async Results",
+                "pages": [
+                  "api-explorer/tag-descriptions/async-results"
+                ]
+              },
+              {
+                "group": "Chunked Files",
+                "pages": [
+                  "api-explorer/tag-descriptions/chunked-files"
+                ]
+              },
+              {
+                "group": "Data Tables",
+                "pages": [
+                  "api-explorer/tag-descriptions/data-tables"
+                ]
+              },
+              {
+                "group": "Data Transformation",
+                "pages": [
+                  "api-explorer/tag-descriptions/data-transformation"
+                ]
+              },
+              {
+                "group": "Engagements",
+                "pages": [
+                  "api-explorer/tag-descriptions/engagements"
                 ]
               },
               {
                 "group": "Engagement Account Groupings",
                 "pages": [
-                  "api-explorer/engagement-account-groupings/description"
+                  "api-explorer/tag-descriptions/engagement-account-groupings"
+                ]
+              },
+              {
+                "group": "Engagement Account Groups",
+                "pages": [
+                  "api-explorer/tag-descriptions/engagement-account-groups"
+                ]
+              },
+              {
+                "group": "File Info",
+                "pages": [
+                  "api-explorer/tag-descriptions/file-info"
                 ]
               },
               {
                 "group": "File Manager",
                 "pages": [
-                  "api-explorer/file-manager/description"
+                  "api-explorer/tag-descriptions/file-manager"
+                ]
+              },
+              {
+                "group": "File Results",
+                "pages": [
+                  "api-explorer/tag-descriptions/file-results"
+                ]
+              },
+              {
+                "group": "JSON Tables",
+                "pages": [
+                  "api-explorer/tag-descriptions/json-tables"
+                ]
+              },
+              {
+                "group": "Libraries",
+                "pages": [
+                  "api-explorer/tag-descriptions/libraries"
+                ]
+              },
+              {
+                "group": "Organizations",
+                "pages": [
+                  "api-explorer/tag-descriptions/organizations"
+                ]
+              },
+              {
+                "group": "Populations",
+                "pages": [
+                  "api-explorer/tag-descriptions/populations"
+                ]
+              },
+              {
+                "group": "Risk Ranges",
+                "pages": [
+                  "api-explorer/tag-descriptions/risk-ranges"
+                ]
+              },
+              {
+                "group": "Saved Filters",
+                "pages": [
+                  "api-explorer/tag-descriptions/saved-filters"
+                ]
+              },
+              {
+                "group": "Task History",
+                "pages": [
+                  "api-explorer/tag-descriptions/task-history"
                 ]
               },
               {
                 "group": "Tasks",
                 "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/tasks/description",
+                  "api-explorer/tag-descriptions/tasks",
                   "POST /v1/tasks/{taskId}/add-comment",
                   "POST /v1/tasks",
                   "DELETE /v1/tasks/{taskId}",
                   "GET /v1/tasks/{taskId}",
                   "PUT /v1/tasks/{taskId}"
+                ]
+              },
+              {
+                "group": "Transaction ID Previews",
+                "pages": [
+                  "api-explorer/tag-descriptions/transaction-id-previews"
+                ]
+              },
+              {
+                "group": "Users",
+                "pages": [
+                  "api-explorer/tag-descriptions/users"
+                ]
+              },
+              {
+                "group": "Webhook Event Logs",
+                "pages": [
+                  "api-explorer/tag-descriptions/webhook-event-logs"
+                ]
+              },
+              {
+                "group": "Webhooks",
+                "pages": [
+                  "api-explorer/tag-descriptions/webhooks"
                 ]
               }
             ]
