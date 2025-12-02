@@ -102,9 +102,27 @@
                 ]
               },
               {
+                "group": "Admin Reports",
+                "pages": [
+                  "api-explorer/tag-descriptions/admin-reports"
+                ]
+              },
+              {
+                "group": "Analysis Results",
+                "pages": [
+                  "api-explorer/tag-descriptions/analysis-results"
+                ]
+              },
+              {
                 "group": "Analysis Source Types",
                 "pages": [
                   "api-explorer/tag-descriptions/analysis-source-types"
+                ]
+              },
+              {
+                "group": "Analysis Types",
+                "pages": [
+                  "api-explorer/tag-descriptions/analysis-types"
                 ]
               },
               {
@@ -117,6 +135,12 @@
                 "group": "Async Results",
                 "pages": [
                   "api-explorer/tag-descriptions/async-results"
+                ]
+              },
+              {
+                "group": "Chunked Files",
+                "pages": [
+                  "api-explorer/tag-descriptions/chunked-files"
                 ]
               },
               {
@@ -138,15 +162,45 @@
                 ]
               },
               {
+                "group": "Engagement Account Groups",
+                "pages": [
+                  "api-explorer/tag-descriptions/engagement-account-groups"
+                ]
+              },
+              {
+                "group": "File Info",
+                "pages": [
+                  "api-explorer/tag-descriptions/file-info"
+                ]
+              },
+              {
                 "group": "File Manager",
                 "pages": [
                   "api-explorer/tag-descriptions/file-manager"
                 ]
               },
               {
+                "group": "File Results",
+                "pages": [
+                  "api-explorer/tag-descriptions/file-results"
+                ]
+              },
+              {
+                "group": "JSON Tables",
+                "pages": [
+                  "api-explorer/tag-descriptions/json-tables"
+                ]
+              },
+              {
                 "group": "Populations",
                 "pages": [
                   "api-explorer/tag-descriptions/populations"
+                ]
+              },
+              {
+                "group": "Saved Filters",
+                "pages": [
+                  "api-explorer/tag-descriptions/saved-filters"
                 ]
               },
               {
@@ -165,6 +219,12 @@
                   "DELETE /v1/tasks/{taskId}",
                   "GET /v1/tasks/{taskId}",
                   "PUT /v1/tasks/{taskId}"
+                ]
+              },
+              {
+                "group": "Transaction ID Previews",
+                "pages": [
+                  "api-explorer/tag-descriptions/transaction-id-previews"
                 ]
               },
               {
