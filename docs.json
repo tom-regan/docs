@@ -130,6 +130,54 @@
                   "GET /v1/tasks/{taskId}",
                   "PUT /v1/tasks/{taskId}"
                 ]
+              },
+              {
+                "group": "Analysis Source Types",
+                "pages": [
+                  "api-explorer/tag-descriptions/analysis-source-types"
+                ]
+              },
+              {
+                "group": "Async Results",
+                "pages": [
+                  "api-explorer/tag-descriptions/async-results"
+                ]
+              },
+              {
+                "group": "Data Tables",
+                "pages": [
+                  "api-explorer/tag-descriptions/data-tables"
+                ]
+              },
+              {
+                "group": "Data Transformation",
+                "pages": [
+                  "api-explorer/tag-descriptions/data-transformation"
+                ]
+              },
+              {
+                "group": "Populations",
+                "pages": [
+                  "api-explorer/tag-descriptions/populations"
+                ]
+              },
+              {
+                "group": "Task History",
+                "pages": [
+                  "api-explorer/tag-descriptions/task-history"
+                ]
+              },
+              {
+                "group": "Users",
+                "pages": [
+                  "api-explorer/tag-descriptions/users"
+                ]
+              },
+              {
+                "group": "Webhook Event Logs",
+                "pages": [
+                  "api-explorer/tag-descriptions/webhook-event-logs"
+                ]
               }
             ]
           }
