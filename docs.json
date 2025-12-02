@@ -69,16 +69,45 @@
               "api-explorer/reference",
               "api-explorer/download",
               {
-                "group": "Account Groupings",
+                "group": "Tasks",
+                "openapi": "openapi.json tag=Tasks",
                 "pages": [
-                  "api-explorer/account-groupings/description",
-                  "api-explorer/account-groupings/post-import-from-chunked-file",
-                  "api-explorer/account-groupings/post-query",
-                  "api-explorer/account-groupings/get",
-                  "api-explorer/account-groupings/put",
-                  "api-explorer/account-groupings/delete",
-                  "api-explorer/account-groupings/post-append-from-chunked-file",
-                  "api-explorer/account-groupings/post-export"
+                  "api-explorer/tasks/description"
+                ]
+              },
+              {
+                "group": "Account Mappings",
+                "openapi": "openapi.json tag=Account Mappings",
+                "pages": [
+                  "api-explorer/account-mappings/description"
+                ]
+              },
+              {
+                "group": "File Manager",
+                "openapi": "openapi.json tag=File Manager",
+                "pages": [
+                  "api-explorer/file-manager/description"
+                ]
+              },
+              {
+                "group": "Engagement Account Groupings",
+                "openapi": "openapi.json tag=Engagement Account Groupings",
+                "pages": [
+                  "api-explorer/engagement-account-groupings/description"
+                ]
+              },
+              {
+                "group": "API Tokens",
+                "openapi": "openapi.json tag=API Tokens",
+                "pages": [
+                  "api-explorer/api-tokens/description"
+                ]
+              },
+              {
+                "group": "Account Groupings",
+                "openapi": "openapi.json tag=Account Groupings",
+                "pages": [
+                  "api-explorer/account-groupings/description"
                 ]
               },
               {
