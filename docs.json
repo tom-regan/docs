@@ -63,28 +63,72 @@
         "tab": "API Explorer",
         "groups": [
           {
-            "group": "API reference",
-            "icon": "book",
+            "group": "Overview",
+            "icon": "compass",
             "pages": [
               "api-explorer/reference",
-              "api-explorer/download",
+              "api-explorer/download"
+            ]
+          },
+          {
+            "group": "API reference",
+            "icon": "book",
+            "expanded": false,
+            "pages": [
               {
                 "group": "Account Groupings",
+                "openapi": "/openapi.json",
                 "pages": [
                   "api-explorer/account-groupings/description",
-                  "api-explorer/account-groupings/post-import-from-chunked-file",
-                  "api-explorer/account-groupings/post-query",
-                  "api-explorer/account-groupings/get",
-                  "api-explorer/account-groupings/put",
-                  "api-explorer/account-groupings/delete",
-                  "api-explorer/account-groupings/post-append-from-chunked-file",
-                  "api-explorer/account-groupings/post-export"
+                  "POST /v1/account-groupings/{accountGroupingId}/append-from-chunked-file",
+                  "DELETE /v1/account-groupings/{accountGroupingId}",
+                  "POST /v1/account-groupings/{accountGroupingId}/export",
+                  "POST /v1/account-groupings/import-from-chunked-file",
+                  "POST /v1/account-groupings/query",
+                  "GET /v1/account-groupings/{accountGroupingId}",
+                  "PUT /v1/account-groupings/{accountGroupingId}"
                 ]
               },
               {
                 "group": "Account Groups",
                 "pages": [
                   "api-explorer/account-groups/description"
+                ]
+              },
+              {
+                "group": "Account Mappings",
+                "pages": [
+                  "api-explorer/account-mappings/description"
+                ]
+              },
+              {
+                "group": "API Tokens",
+                "pages": [
+                  "api-explorer/api-tokens/description"
+                ]
+              },
+              {
+                "group": "Engagement Account Groupings",
+                "pages": [
+                  "api-explorer/engagement-account-groupings/description"
+                ]
+              },
+              {
+                "group": "File Manager",
+                "pages": [
+                  "api-explorer/file-manager/description"
+                ]
+              },
+              {
+                "group": "Tasks",
+                "openapi": "/openapi.json",
+                "pages": [
+                  "api-explorer/tasks/description",
+                  "POST /v1/tasks/{taskId}/add-comment",
+                  "POST /v1/tasks",
+                  "DELETE /v1/tasks/{taskId}",
+                  "GET /v1/tasks/{taskId}",
+                  "PUT /v1/tasks/{taskId}"
                 ]
               }
             ]
