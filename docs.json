@@ -79,7 +79,7 @@
                 "group": "Account Groupings",
                 "openapi": "/openapi.json",
                 "pages": [
-                  "api-explorer/account-groupings/description",
+                  "api-explorer/tag-descriptions/account-groupings",
                   "POST /v1/account-groupings/{accountGroupingId}/append-from-chunked-file",
                   "DELETE /v1/account-groupings/{accountGroupingId}",
                   "POST /v1/account-groupings/{accountGroupingId}/export",
