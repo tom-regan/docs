@@ -2,4 +2,379 @@
 title: "Versioned notes"
 ---
 
-Stub article here
+```
+# Release 25.11
+
+## v1.8.2
+
+### Webhooks
+
+- Added user `role` to the user.invited and user.role webhook payloads.
+
+### Data Tables
+
+- For data table exports larger than 2 million rows, sorting is disabled to improve performance.
+
+### Libraries
+
+- Allow analysis types to be added or removed from in-use libraries
+
+# Release 25.09
+
+## v1.8.1
+
+### Webhooks
+
+- Added eventId to the webhook payload, deprecated the usage of it within the data object.
+- Added tenantId to the webhook payload
+- Adds new analysis, engagement and user webhook events.
+
+### Webhook event logs
+
+Adds a new entity, Webhook event logs, that provides a log of all the attempts to deliver webhooks to third party services. This includes in progress requests,
+as well as completed and failed requests.
+
+- Adds a new `GET /webhook-event-logs/{webhookEventLogId}` endpoint, which returns a webhook event log identified by its ID.
+- Adds a new `POST /webhook-event-logs/query` endpoint, which queries webhook event logs based on a provided filter.
+
+# Release 25.07
+
+## v1.8.0
+
+### Webhooks
+
+Adds a new set of endpoints for managing the Webhooks entity, which allows users to manage webhook configurations.
+
+- Adds a new `GET /webhooks/{webhookId}` endpoint, which returns a webhook identified by its ID.
+- Adds a new `POST /webhooks` endpoint, which creates a new webhook entity.
+- Adds a new `PUT /webhooks/{webhookId}` endpoint, which updates a webhook entity identified by its ID.
+- Adds a new `DELETE /webhooks/{webhookId}` endpoint, which deletes a webhook entity identified by its ID.
+- Adds a new `POST /webhooks/query` endpoint, which queries webhooks based on a provided filter.
+- Adds webhook payload information to the OpenAPI specification, and API Reference, describing how to receive and authenticate webhook payloads sent by
+  MindBridge.
+
+### File Infos
+
+Adds a new set of endpoints for the _File Info_ entity, which allows users to view the metadata of files related to analysis sources and
+file manager files.
+
+- Adds a new `GET/file-info/{fileInfoId}` endpoint, which returns a file info identified by its id.
+- Adds a new `POST/file-info/query` endpoint, which queries file infos based on a provided filter.
+
+### Analysis source
+
+Deprecates the existing `fileInfo` field on the analysis source, adding in links to file info and file manager fields.
+
+- Deprecates the `fileManagerFileId` and `fileInfo` fields of the analysis source entity, replacing them with the `fileInfoVersions` and `fileManagerFiles`
+  fields.
+- Adds a new `fileInfoVersions` field to analysis source, which provides a map of the available file infos related to the analysis source. This replaces the
+  fileInfo field.
+- Adds a new `fileManagerFiles` field to analysis source, which provides a map of the available file manager files related to the analysis source. This replaces
+  the current `fileManagerFileId`, which only linked to the latest file manager file.
+
+### File Manager
+
+Adds a new `fileInfoId` field, providing access to the related file info entity.
+
+- Adds a new field `fileInfoId` to the file manager file entity, identifying the associated file info.
+
+### Transaction ID Preview
+
+Fixes some bugs with the Transaction ID Preview entity.
+
+- Deprecates the `engagementId` and `analysisId` fields.
+
+- Fixes an issue where the `analysisSourceId`, `columnSelection`, `type` and `smartSplitter` fields were not being set correctly.
+
+# Release 25.05
+
+## v1.7.0
+
+### Filters
+
+Adds a new entity, _Saved Filter_, which allows users to manage saved library, organization, engagement and private filters.
+
+- Adds a new `GET /saved-filters/{savedFilterId}` endpoint, which returns a saved filter identified by its ID.
+- Adds a new `POST /saved-filters` endpoint, which creates a new saved filter entity.
+- Adds a new `PUT /saved-filters/{savedFilterId}` endpoint, which updates a saved filter entity identified by its ID.
+- Adds a new `DELETE /saved-filters/{savedFilterId}` endpoint, which deletes a saved filter entity identified by its ID.
+- Adds a new `POST /saved-filters/query` endpoint, which queries saved filters based on a provided filter.
+- Adds a new `POST /saved-filters/validate` endpoint, which returns a list of errors and warnings if the saved filter cannot be applied to
+  the specified data table.
+
+### Populations
+
+Adds new functionality to the _Populations_ entity, allowing users to create, update, and delete populations.
+
+- Adds a new `POST /populations` endpoint, which creates a new population entity.
+- Adds a new `PUT /populations/{populationId}` endpoint, which updates a population entity identified by its ID.
+- Adds a new `DELETE /populations/{populationId}` endpoint, which deletes a population entity identified by its ID.
+- The following fields have been added to the population entity: `analysisTypeId`, `condition`, `legacyFilterFormat`, `displayCurrencyCode`
+  and `displayLocale`.
+
+### Risk ranges
+
+Adds a new entity, _Risk Range_, which enables customizing the low, medium, and high risk thresholds for their related risk scores.
+
+- Adds a new `GET /risk-ranges/{riskRangeId}` endpoint, which returns a risk range identified by its ID.
+- Adds a new `POST /risk-ranges` endpoint, which creates a new risk range entity.
+- Adds a new `PUT /risk-ranges/{riskRangeId}` endpoint, which updates a risk range entity identified by its ID.
+- Adds a new `DELETE /risk-ranges/{riskRangeId}` endpoint, which deletes a risk range entity identified by its ID.
+- Adds a new `POST /risk-ranges/query` endpoint, which queries risk ranges based on a provided filter.
+
+### Analysis type configuration
+
+Adds a new entity, _Analysis Type Configuration_, which can be used to configure analysis settings at the library, engagement, and analysis
+level.
+
+- Adds a new `GET /analysis-type-configuration/{analysisTypeConfigurationId}` endpoint, which returns an analysis type configuration
+  identified by its
+  ID.
+- Adds a new `PUT /analysis-type-configuration/{analysisTypeConfigurationId}` endpoint, which updates an analysis type configuration entity
+  identified by its ID.
+- Adds a new `POST /analysis-type-configuration/query` endpoint, which queries analysis type configurations based on a provided filter.
+
+### Engagement account groups
+
+Adds new endpoints allowing for the creation, updating, and deletion of engagement account groups.
+
+- Adds a new `POST /api/v1/engagement-account-groups` endpoint, which creates a new engagement account group.
+- Adds a new `PUT /api/v1/engagement-account-groups/{engagementAccountGroupId}` endpoint, which updates an engagement account groups.
+- Adds a new `DELETE /api/v1/engagement-account-groups/{engagementAccountGroupId}` endpoint, which deletes an engagement account group.
+- The field `hidden` can now be used as part of a query filter.
+
+### Data tables
+
+Adds new fields to the data table column model:
+
+- `mindBridgeField` - The MindBridge Field name this column is mapped to.
+- `typeaheadDataTableId` - The ID of the typeahead table this column is related to.
+
+### Engagements
+
+- Removes `subscribedUserIds` field.
+
+### Libraries
+
+- Adds a new `riskRangeEditPermission` field, which informs if risk scores within this library can have their risk ranges adjusted.
+
+# Q1 Release 2025
+
+## v.1.6.1
+
+### Libraries
+
+The industry tags field (`industryTags`) has been removed from the library creation endpoint.
+
+### Account groups
+
+The industry tags field (`industryTags`) has been removed from the account group update endpoint.
+
+# Q4 Release 2024
+
+## v1.6.0
+
+### Tasks
+
+Adds the following new fields to the Task model:
+
+- `taskApprovalStatus` - The approval status of the task.
+- `dueDate` - The due date of the task.
+- `approvalId` - The ID of the approval associated with the task.
+- `tags` - classification tags for the task.
+- `amounts` - dollar value amounts associated with the task.
+
+### Task History
+
+Adds a new entity, _Task History_, to store the history of task changes.
+
+- Adds a new `GET /task-histories/{taskHistoryId}` endpoint, which returns a task history entity identified by its ID.
+- Adds a new `POST /task-histories/query` endpoint, which queries task histories results based on a given filter.
+
+### Users
+
+- Adds a new field, `recentLogins`, which shows when and via which IP the account was last used.
+
+# Q3 Release 2024
+
+## v1.5.0
+
+### Analysis Results
+
+A new entity, _Analysis Result_, has been added. This entity is the new primary entity for storing analysis results (currently limited to
+`data tables` and `tasks`). Now, instead of being limited to viewing only the most recent analysis results, the results from multiple runs
+of a given analysis can be accessed. This enhancement allows for a comprehensive history of analysis runs, and improves tracking of changes
+over time.
+
+- Adds a new `GET /analysis-results/{analysisResultsId}` endpoint, which returns an analysis result entity identified by its ID.
+- Adds a new `POST /analysis-results/query` endpoint, which queries analysis results based on a given filter.
+
+### Tasks
+
+- Adds a new field to tasks called `analysisResultId`, which is queryable.
+- Removes the requirement to include an `analysisId` term when querying tasks.
+
+### Data Tables
+
+- Adds a new field to data tables called `analysisResultId`, which is queryable.
+- Removes the requirement to include an `analysisId` term when querying data tables.
+
+### Account Mappings
+
+A new entity, _Account Mapping_, has been added. This entity represents mappings between the accounts in General Ledger
+and Chart of Accounts file types to MindBridge Account Classification (MAC) codes. These must be configured and
+validated before running General Ledger analyses.
+
+- Adds a new `GET /account-mapping/{accountMappingId}` endpoint, which returns an account mapping entity identified by
+  its ID.
+- Adds a new `POST /account-mapping/query` endpoint, which queries account mappings based on a given filter.
+- Adds a new `PUT /account-mapping/{accountMappingId}` endpoint, which updates an account mapping entity identified by
+  its ID.
+- Adds a new `POST /account-mapping/verify` endpoint, which verifies all account mappings within the given engagement.
+- Adds a new `POST /account-mapping/delete-unused` endpoint, which deletes all unused account mappings of a given
+  engagement.
+
+### Engagement Account Group
+
+A new entity, _Engagement Account Group_, has been added to provide access to the account groups within engagement account groupings.
+
+- Adds a new `GET /engagement-account-groups/{engagementAccountGroupId}` endpoint, which returns an engagement account
+  group identified by its ID.
+- Adds a new `POST /engagement-account-groups/query` endpoint, which queries engagement account groups given a filter.
+
+### JSON Tables
+
+A new entity, _JSON Table_, has been added, which provides the ability to import data from a JSON-based source.
+
+- Adds a new `GET /json-tables/{jsonTableId}` endpoint, which returns a JSON table entity identified by its ID.
+- Adds a new `POST /json-tables` endpoint, which allows for the creation of a new JSON table.
+- Adds a new `POST /json-tables/{jsonTableId}/append` endpoint, which allows data to be appended to an existing JSON
+  table entry.
+- Adds a new `POST /file-manager/import-from-json-table` endpoint, which enables creating a new file manager file from
+  the data imported to a JSON table entry.
+
+### File Manager Data Transformation: Merge Files
+
+- Adds a new `POST /file-manager/transform/merge` endpoint, which merges data from various file sources and creates a consolidated file with
+  the aggregated data.
+
+### Other
+
+- Marked some fields on the Page entity as deprecated, to be removed in a future release.
+- Platform-level rate limits provide additional protection on a per-IP address basis, but are set high enough that they should not be
+  encountered during regular use. If the HTTP status `429` is returned, requests can be retried after approximately 30 seconds. Refer to the
+  _Rate Limits_ section of the API reference document for more information.
+
+# Q2 Release 2024
+
+## v1.4.1
+
+### Libraries
+
+- Adds a new field to the Library model, `riskScoreAndGroupsSelectionPermission`.
+
+### Data Tables
+
+- Adds a new field to the Data Table Column model, `originalName`.
+
+## v1.4.0
+
+### Account Groupings and Account Groups
+
+Two new entities, Account Groupings and Account Groups, have been added. These entities are used to map a set of
+accounts in a financial hierarchy to MindBridge Account Classification (MAC) codes for use in analyses and reports.
+
+- Adds new `GET /account-groupings/{accountGroupingId}` endpoint, which returns an account grouping identified by its
+  ID.
+- Adds new `PUT /account-groupings/{accountGroupingId}` endpoint, which updates an account grouping identified by its
+  ID.
+- Adds new `DELETE /account-groupings/{accountGroupingId}` endpoint, which deletes an account grouping identified by its
+  ID.
+- Adds new `POST /account-groupings/query` endpoint, which queries account groupings given a filter.
+- Adds new `POST /account-groupings/export` endpoint, which exports an account grouping and all of its account groups
+  within an Excel file.
+- Adds new `POST /account-groupings/import-from-chunked-file` endpoint, which creates a new account grouping and account
+  groups based on a provided Excel file.
+- Adds new `POST /account-groupings/{accountGroupingId}/append-from-chunked-file` endpoint, which adds new account
+  groups to an existing account grouping based on a provided Excel file.
+- Adds new `GET /account-groups/{accountGroupId}` endpoint, which returns an account group identified by its ID.
+- Adds new `POST /account-groups/query` endpoint, which queries account groups given a filter.
+- Adds new `PUT /account-groups/{accountGroupId}` endpoint, which updates an account group identified by its ID.
+
+### Engagement Account Groupings
+
+A new entity, Engagement Account Grouping, has been added. This entity is the parent record to Engagement Account
+Groups, which are used to map accounts to MindBridge Account Classification (MAC) codes for use in analyses and reports
+in the context of an Engagement.
+
+- Adds new `GET /engagement-account-groupings/{engagementAccountGroupingId}` endpoint, which returns an engagement
+  account grouping identified by its ID.
+- Adds new `POST /engagement-account-groupings/query` endpoint, which queries engagement account groupings given a
+  filter.
+- Adds new `POST /engagement-account-groupings/export` endpoint, which exports an engagement account grouping and all of
+  its account groups within an Excel file.
+
+# Q1 Release 2024
+
+## v1.3.1
+
+### Analysis Source Types
+
+- Adds new `mindbridgeFieldNameForNonMacGroupings` and `requiredForNonMacGroupings` fields to document exceptional cases
+  where a MindBridge column name and required status may change dependent on if a MAC based account grouping is being
+  used as part of an analysis.
+
+## v1.3.0
+
+### Analysis Types
+
+A new entity, Analysis Type, has been added. This describes the features of an analysis, as well as the source types
+used as part of the analysis. This replaces the table of analysis types in the "Analysis" section of the API
+documentation.
+
+- Adds new `GET /analysis-types/{analysisTypeId}` endpoint, which returns an analysis type identified by its id.
+- Adds new `POST /analysis-types/query` endpoint, which queries analysis types given a filter.
+
+### Analysis Source Types
+
+A new entity, Analysis Source Type, has been added. This describes the steps required when ingesting a source with this
+type, as well as the column mappings. This replaces the table of analysis source types in the "Analysis Source" section
+of the API documentation.
+
+- Adds new `GET /analysis-source-types/{analysisTypeId}` endpoint, which returns an analysis source type identified by
+  its id.
+- Adds new `POST /analysis-source-types/query` endpoint, which queries analysis source types given a filter.
+
+### Analysis
+
+- Adds new `POST /analyses/engagement-roll-forward` endpoint, which allows for the creation of a new analysis from an
+  existing analysis that's part of another engagement.
+
+### Libraries
+
+- Adds new `POST /libraries/` endpoint, which allows for the creation of a new library.
+- Adds new `PUT /libraries/{libraryId}` endpoint, which allows for the updating of a library.
+- Adds new `DELETE /libraries/{libraryId}` endpoint, which allows for the deletion of a library.
+- Adds new fields to the Library model, including `system` and `archived`, which are queryable.
+
+# Q3 Release 2023
+
+## v1.2.0
+
+### Analyses
+
+- Added `periodic` field, which indicates if an analysis is a periodic analysis. This can be set when creating a new
+  analysis.
+- The values of `ApiAnalysisStatus`'s `preflightErrors` have changed with the addition of `periodic`. The `ready` field
+  should be used to determine if an analysis can be run.
+
+### Tasks
+
+- Using the `/query` endpoint now requires that an `analysisId` term be included.
+
+### Data Tables
+
+- Using the `/query` endpoint now requires that an `analysisId` term be included.
+- Adds a new `type` field, which indicates the type of data table. It serves a similar purpose to the `logicalName`
+  field, but is used in different contexts.Stub article here
+```
